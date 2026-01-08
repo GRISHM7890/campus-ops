@@ -6,7 +6,7 @@
 ![CampusOPS Banner](https://img.shields.io/badge/Status-Live-success) ![Stack](https://img.shields.io/badge/Stack-Next.js_14_•_Firebase_•_Tailwind-blue)
 
 **Live Demo:** [https://pulxo-campusops.vercel.app/](https://pulxo-campusops.vercel.app/)  
-**Transparency Portal:** [https://pulxo-campusops.vercel.app/public/0d3f47783cb2dc4ac6985042ebe5d7bc8fefa3d7b3c80a8d74cf2b23fd849e61](https://pulxo-campusops.vercel.app/public/0d3f47783cb2dc4ac6985042ebe5d7bc8fefa3d7b3c80a8d74cf2b23fd849e61)
+**Transparency Portal:** [https://pulxo-campusops.vercel.app/public](https://pulxo-campusops.vercel.app/public)
 
 ---
 

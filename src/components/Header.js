@@ -21,7 +21,7 @@ export default function Header() {
     const navLinks = [
         { name: 'Home', href: '/' },
         { name: 'Campuses', href: '/campuses' },
-        { name: 'Transparency', href: '/public/0d3f47783cb2dc4ac6985042ebe5d7bc8fefa3d7b3c80a8d74cf2b23fd849e61' },
+        { name: 'Transparency', href: '/public' },
         { name: 'Map', href: '/#campus-map' },
     ];
 

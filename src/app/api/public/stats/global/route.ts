@@ -15,7 +15,7 @@ export async function GET() {
         const campusDocs = campusesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
         // Aggregate breakdown
-        const breakdown = {
+        const breakdown: any = {
             critical: 0,
             high: 0,
             medium: 0,

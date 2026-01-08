@@ -1,13 +1,6 @@
-"use client";
-
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useSpring } from 'framer-motion';
-import { getCampusData, getCampuses } from '@/lib/api';
-import Map from '@/components/Map';
-import Link from 'next/link';
-import SpiralBackground from '@/components/SpiralBackground';
-import GlowButton from '@/components/GlowButton';
-import { useAuth } from '@/context/AuthContext';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import './App.css';
 
 const AnimatedSection = ({ children, className, id, name }) => {
   return (
@@ -53,8 +46,6 @@ const Hero = () => {
   const sx = useSpring(rotateX, springConfig);
   const sy = useSpring(rotateY, springConfig);
 
-  const { user } = useAuth();
-
   return (
     <section
       className="framer-12jsqv5 hero-section"
@@ -75,7 +66,7 @@ const Hero = () => {
         <div className="framer-hq82fe" data-framer-name="Heading and subheading">
           <div className="framer-187ailk">
             <h1 className="framer-text hero-title">
-              {["Operational ", "Excellence ", "for ", "Modern ", "Businesses."].map((word, i) => (
+              {["Intelligent ", "Automation ", "for ", "Modern ", "Businesses."].map((word, i) => (
                 <motion.span
                   key={i}
                   className="hero-word"
@@ -93,7 +84,7 @@ const Hero = () => {
               animate={{ opacity: 1, z: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Streamline your campus operations with unified operational intelligence.
+              Streamline your campus operations with AI-powered intelligence.
               Modernize administrative workflows, enhance student engagement,
               and achieve complete operational visibility.
             </motion.p>
@@ -102,20 +93,10 @@ const Hero = () => {
         <motion.div
           className="framer-13fg4xq"
           data-framer-name="CTA"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          whileHover={{ translateZ: 40, scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <GlowButton variant="primary" onClick={() => {
-            if (user) {
-              window.location.href = "#campus-map";
-            } else {
-              const loginBtn = document.querySelector('.login-btn');
-              if (loginBtn) loginBtn.click();
-            }
-          }}>
-            {user ? "Explore Campus Map" : "Access Campus List"}
-          </GlowButton>
+          <button className="cta-button">Transform Your Campus</button>
         </motion.div>
       </motion.div>
     </section>
@@ -154,36 +135,80 @@ const FeatureCard = ({ title, desc, icon }) => (
   </motion.div>
 );
 
-export default function Home() {
-  const [campuses, setCampuses] = useState([]);
-  const { user } = useAuth();
-
-  const refreshCampuses = () => {
-    getCampuses().then(setCampuses).catch(err => {
-      console.error("Error refreshing campuses:", err);
-    });
-  };
-
-  useEffect(() => {
-    if (user) {
-      refreshCampuses();
-    }
-  }, [user]);
-
+function App() {
   return (
-    <main className="main-container">
-      <SpiralBackground />
+    <div className="main-container">
       <Hero />
 
       <AnimatedSection name="Logos" className="framer-9r45or">
         <LogoMarquee />
       </AnimatedSection>
 
-      <AnimatedSection name="Map" id="campus-map">
+      <AnimatedSection name="Services" id="services" className="framer-q8qjq9">
         <div className="section-inner">
-          <h2 className="framer-text gradient-text">Live Campus View</h2>
-          <p className="framer-text section-subtitle">Real-time operational visibility across all facilities.</p>
-          <Map campuses={campuses} onRefresh={refreshCampuses} />
+          <h2 className="framer-text gradient-text">Our Solutions</h2>
+          <p className="framer-text section-subtitle">Precision tools for the modern educational landscape.</p>
+          <div className="items-grid">
+            <FeatureCard title="Academic AI" desc="Automated grading, personalized learning paths, and curriculum optimization." icon="🎓" />
+            <FeatureCard title="Smart Facilities" desc="Energy management, dynamic room booking, and predictive security." icon="🏢" />
+            <FeatureCard title="Admin Orchestration" desc="Unified dashboard for staff, payroll, and compliance automation." icon="⚙️" />
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection name="Process" id="process" className="framer-1ja5f3k">
+        <div className="section-inner">
+          <h2 className="framer-text gradient-text">The Roadmap</h2>
+          <div className="process-steps">
+            {[
+              { t: "Discover", d: "Analysis of your current campus data silos." },
+              { t: "Integrate", d: "Seamless connection with legacy systems." },
+              { t: "Launch", d: "AI-driven automation goes live across departments." }
+            ].map((step, i) => (
+              <div key={i} className="process-step">
+                <span className="step-num">{i + 1}</span>
+                <h4>{step.t}</h4>
+                <p>{step.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection name="Cases" id="cases" className="framer-5y9jte">
+        <div className="section-inner">
+          <h2 className="framer-text gradient-text">Success Stories</h2>
+          <div className="cases-grid">
+            <div className="case-card">
+              <div className="case-image" style={{ background: "linear-gradient(45deg, #1e1e2e, #2a2a40)" }} />
+              <h4>Global Tech Institute</h4>
+              <p>Achieved 40% reduction in admin overhead.</p>
+            </div>
+            <div className="case-card">
+              <div className="case-image" style={{ background: "linear-gradient(45deg, #1e1e2e, #402a2a)" }} />
+              <h4>Riverside Academy</h4>
+              <p>Improved student retention by 25% via AI analytics.</p>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection name="Pricing" id="pricing" className="framer-1lujoq5">
+        <div className="section-inner">
+          <h2 className="framer-text gradient-text">Scale with Confidence</h2>
+          <div className="pricing-grid">
+            <div className="price-card">
+              <span>Starter</span>
+              <h3>$999<span>/mo</span></h3>
+              <ul><li>Basic Analytics</li><li>Up to 500 Students</li><li>Email Support</li></ul>
+            </div>
+            <div className="price-card featured">
+              <div className="badge">MOST POPULAR</div>
+              <span>Professional</span>
+              <h3>$2,499<span>/mo</span></h3>
+              <ul><li>Full AI Suite</li><li>Unlimited Students</li><li>24/7 Priority Support</li></ul>
+            </div>
+          </div>
         </div>
       </AnimatedSection>
 
@@ -193,10 +218,9 @@ export default function Home() {
           <div className="footer-links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
-            <a href={`/public/6f026c03c3cf6fdee2e582f8e6b795e85f2a75869134a4d5d8016276e2ae6167`}>Transparency</a>
             <a href="#">LinkedIn</a>
           </div>
-          <p>© 2025 CampusOPS | Excellence for Education.</p>
+          <p>© 2025 CampusOPS | Intelligence for Education.</p>
         </div>
       </footer>
 
@@ -206,6 +230,8 @@ export default function Home() {
         <div className="shape circle-2" />
         <div className="shape-orb orb-1" />
       </div>
-    </main>
+    </div>
   );
 }
+
+export default App;

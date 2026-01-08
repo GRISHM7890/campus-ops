@@ -1,0 +1,91 @@
+:root {
+  font-family: 'Figtree', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #ffffff;
+  background-color: #000000;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --token-55fce8bf-ab86-42dc-8b77-6335cf9cf582: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #000000;
+}
+
+#root {
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Figtree', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 80px 20px;
+}
+
+.framer-text {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Base styles for the extracted sections */
+.framer-12jsqv5 { /* Hero */
+  min-height: 100vh;
+  justify-content: flex-start;
+  padding-top: 15vh;
+}
+
+.framer-187ailk { /* Heading container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+}
+
+h1.framer-text {
+  font-size: 70px;
+  line-height: 1.1em;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -2.2px;
+  margin-bottom: 24px;
+}
+
+h1.framer-text span {
+  display: inline-block;
+  white-space: pre;
+}
+
+@media (max-width: 810px) {
+  h1.framer-text {
+    font-size: 48px;
+    letter-spacing: -1.5px;
+  }
+}

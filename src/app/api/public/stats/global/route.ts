@@ -46,7 +46,7 @@ export async function GET() {
         recentActivity.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
 
         // Campus Grid Data
-        const campuses = campusDocs.map(campus => {
+        const campuses = campusDocs.map((campus: any) => {
             // simple health calculation for list view
             return {
                 id: campus.id,

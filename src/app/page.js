@@ -193,7 +193,7 @@ export default function Home() {
           <div className="footer-links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
-            <a href={`/public/6f026c03c3cf6fdee2e582f8e6b795e85f2a75869134a4d5d8016276e2ae6167`}>Transparency</a>
+            <a href={`/public/0d3f47783cb2dc4ac6985042ebe5d7bc8fefa3d7b3c80a8d74cf2b23fd849e61`}>Transparency</a>
             <a href="#">LinkedIn</a>
           </div>
           <p>© 2025 CampusOPS | Excellence for Education.</p>

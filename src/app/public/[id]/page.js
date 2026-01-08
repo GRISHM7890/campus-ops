@@ -14,9 +14,7 @@ export default function PublicTransparency() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        if (!id) return;
-
+    const fetchData = () => {
         fetch(`/api/public/stats/${id}`)
             .then(res => {
                 if (!res.ok) throw new Error("Transparency data unavailable");
@@ -25,6 +23,13 @@ export default function PublicTransparency() {
             .then(setData)
             .catch(err => setError(err.message))
             .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        if (!id) return;
+        fetchData();
+        const interval = setInterval(fetchData, 3000); // Real-time polling
+        return () => clearInterval(interval);
     }, [id]);
 
     const downloadReport = () => {
@@ -216,7 +221,7 @@ export default function PublicTransparency() {
                                 <AlertTriangle size={18} />
                                 Disclaimer
                             </div>
-                            Data is delayed by up to 15 minutes for caching optimization.
+                            Data syncs in real-time (3s refresh).
                         </div>
                     </div>
                 </div>

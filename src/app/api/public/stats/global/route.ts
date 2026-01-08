@@ -22,7 +22,7 @@ export async function GET() {
             low: 0
         };
 
-        const recentActivity = [];
+        const recentActivity: any[] = [];
 
         issuesSnapshot.docs.forEach(doc => {
             const data = doc.data();
